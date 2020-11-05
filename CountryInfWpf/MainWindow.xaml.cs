@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +24,7 @@ namespace CountryInfWpf
     {
         int i = 0;//счетчик в цикле
         SerchCountry SerchCountry = new SerchCountry();
+        CountryForm CountryForm = new CountryForm();
         public MainWindow()
         {
             InitializeComponent();
@@ -41,22 +44,24 @@ namespace CountryInfWpf
             //Вывод информации в ListView 
             try
             {
+                // Преобразование площади из string (записанная через точку) в double 
+                //
+                CultureInfo temp_culture = Thread.CurrentThread.CurrentCulture;
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+                double area = double.Parse(SerchCountry.result[3]);
+                Thread.CurrentThread.CurrentCulture = temp_culture;
                 for (i = 0; i < 6; i += gridViewCoutryInfo.Columns.Count)
                 {
-                    listViewCoutryInfo.Items.Add(Country);
-                    ListViewItem item = listViewCoutryInfo.Items.Add(SerchCountry.result[i]);
-                    item.SubItems.Add(SerchCountry.result[i + 1]);
-                    item.SubItems.Add(SerchCountry.result[i + 2]);
-                    item.SubItems.Add(SerchCountry.result[i + 3]);
-                    item.SubItems.Add(SerchCountry.result[i + 4]);
-                    item.SubItems.Add(SerchCountry.result[i + 5]);
+                    listViewCoutryInfo.Items.Add(new CountryForm { Country = SerchCountry.result[i], CodeCountry = SerchCountry.result[i + 1], Capital = SerchCountry.result[i + 2], Area = area, Population =Convert.ToDouble(SerchCountry.result[i+4]), Region = SerchCountry.result[i+5] });
+                  
                 }
                 // Вывод сообщения сохранять данные или нет
-                if (Convert.ToString(listViewCoutryInfo.Items[0].Text) != "")
+                if (Convert.ToString(listViewCoutryInfo.Items[0]) != "")
                 {
-                    DialogResult dialogResultSave = MessageBox.Show("Сохранить данные?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                   
+                   MessageBoxResult messageBoxResultSave = MessageBox.Show("Сохранить данные?", "Сообщение", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                    if (dialogResultSave == DialogResult.Yes)
+                    if (messageBoxResultSave == MessageBoxResult.Yes)
                     {
                         ToolStripMenuItemSave_Click(sender, e);
                     }
@@ -66,4 +71,4 @@ namespace CountryInfWpf
         }
     }
     }
-}
+

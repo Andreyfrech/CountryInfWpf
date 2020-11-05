@@ -29,7 +29,7 @@
                 <GridView x:Name="gridViewCoutryInfo">
                     
                     <GridViewColumn Header="Название" Width="100" DisplayMemberBinding="{Binding Country}"/>
-                    <GridViewColumn Header="Код страны" Width="100" DisplayMemberBinding="{Binding CodCountry}"/>
+                    <GridViewColumn Header="Код страны" Width="100" DisplayMemberBinding="{Binding CodeCountry}"/>
                     <GridViewColumn Header="Столица" Width="100" DisplayMemberBinding="{Binding Capital}"/>
                     <GridViewColumn Header="Площадь" Width="70" DisplayMemberBinding="{Binding Area}"/>
                     <GridViewColumn Header="Население" Width="70" DisplayMemberBinding="{Binding Population}"/>
