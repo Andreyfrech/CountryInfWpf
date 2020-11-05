@@ -21,11 +21,13 @@
             </MenuItem>
         </Menu>
         <Label Content="Введите страну" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,10,0,0" Height="29" FontSize="14"/>
-        <TextBox x:Name="TextBoxEnterCountry" Grid.Row="1" Margin="15,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="400"/>
-        <Button x:Name="ButtonSerchCountry" Content="Поиск" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0" Width="400" Grid.Row="2"/>
-        <ListView x:Name="ListViewCountry" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="15,10,0,10" Width="600" >
+        <TextBox x:Name="textBoxEnterCountry" Grid.Row="1" Margin="15,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="400"/>
+        <Button x:Name="buttonSerch" Content="Поиск" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0" Width="400" Grid.Row="2" IsEnabled="{Binding ElementName=textBoxEnterCountry, Path=Text.Length}" Click="buttonSerch_Click"/>
+        <ListView x:Name="listViewCoutryInfo" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="15,10,0,10" Width="600"  >
+            
             <ListView.View>
-                <GridView>
+                <GridView x:Name="gridViewCoutryInfo">
+                    
                     <GridViewColumn Header="Название" Width="100" DisplayMemberBinding="{Binding Country}"/>
                     <GridViewColumn Header="Код страны" Width="100" DisplayMemberBinding="{Binding CodCountry}"/>
                     <GridViewColumn Header="Столица" Width="100" DisplayMemberBinding="{Binding Capital}"/>

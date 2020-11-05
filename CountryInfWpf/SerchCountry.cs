@@ -10,7 +10,7 @@ namespace CountryInfWpf
 {
     class SerchCountry
     {
-
+        
         public string Page { get; set; }
 
         public List<string> result = new List<string>(); // массив строк с данными о стране
@@ -18,6 +18,7 @@ namespace CountryInfWpf
         //Поиск информации о стране
         public List<string> Serch(string country)
         {
+            listViewCoutryInfo.Items.Clear();
             RegexCountryName regexCountryName = new RegexCountryName();
             RegexCountryCode regexCountryCode = new RegexCountryCode();
             RegexCountryCapital regexCountryCapital = new RegexCountryCapital();

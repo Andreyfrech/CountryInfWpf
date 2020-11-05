@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Country.cs" />
     <Compile Include="RegexCountry\RegexCountryArea.cs" />
     <Compile Include="RegexCountry\RegexCountryCapital.cs" />
     <Compile Include="RegexCountry\RegexCountryCode.cs" />
